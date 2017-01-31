@@ -1,0 +1,25 @@
+# Dependencies
+bower_components/
+node_modules/
+
+# Generated files
+dist/
+*.log
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*~
+*.swp
+*.swo
+*.sublime-*
+.idea/
+*.iml
+*.iws
+.vscode/
+
+# Miscellaneous
+debug

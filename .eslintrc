@@ -1,0 +1,9 @@
+parser: babel-eslint
+plugins:
+- react
+env:
+  browser: true,
+  jest: true
+extends:
+- standard
+- plugin:react/recommended
