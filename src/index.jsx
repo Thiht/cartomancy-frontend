@@ -3,12 +3,13 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { IndexRoute, Route, Router, browserHistory } from 'react-router'
+import { IndexRoute, Redirect, Route, Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import store from './store'
 
 import App from './components/App'
 import Boards from './components/Boards'
+import Board from './components/Board'
 
 import 'semantic-ui-css/semantic.min.css'
 import './common.css'
@@ -20,10 +21,9 @@ render(
     <Router history={history}>
       <Route path='/' component={App}>
         <IndexRoute component={Boards} />
-        {/* <Route path='boards'>
-          <Route path=':boardID' component={Board} />
-        </Route> */}
+        <Route path='boards/:boardID' component={Board} />
       </Route>
+      <Redirect from="/*" to="/" />
     </Router>
   </Provider>,
   document.getElementById('root')

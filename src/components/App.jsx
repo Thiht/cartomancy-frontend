@@ -1,14 +1,17 @@
 import React, { PropTypes } from 'react'
 
+import DocumentTitle from 'react-document-title'
 import Navbar from './Navbar'
 
 const App = ({
   children
 }) => (
-  <div>
-    <Navbar />
-    {children}
-  </div>
+  <DocumentTitle title='Cartomancy'>
+    <div>
+      <Navbar />
+      {children}
+    </div>
+  </DocumentTitle>
 )
 
 App.propTypes = {

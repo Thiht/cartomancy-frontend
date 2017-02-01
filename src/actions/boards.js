@@ -1,9 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
 export const INVALIDATE_BOARDS = 'INVALIDATE_BOARDS'
-export const invalidateBoards = () => ({
-  type: INVALIDATE_BOARDS
-})
 
 export const REQUEST_BOARDS = 'REQUEST_BOARDS'
 const requestBoards = () => ({
@@ -42,9 +39,8 @@ const shouldFetchBoards = state => {
   const { boards } = state
   if (boards.isFetching) {
     return false
-  } else {
-    return boards.didInvalidate
   }
+  return boards.didInvalidate
 }
 
 export const fetchBoardsIfNeeded = () => (dispatch, getState) => {

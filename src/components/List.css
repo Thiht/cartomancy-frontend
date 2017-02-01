@@ -1,0 +1,20 @@
+.cartomancy-board > .cartomancy-list {
+  background: #e9e9e9;
+  border-radius: 3px;
+  display: inline-block;
+  height: calc(100% - 50px); /* 100% - height of the menu - a bit of space */
+  margin: 0;
+  margin-right: 10px;
+  padding: 5px;
+  vertical-align: top;
+  width: 250px;
+}
+.cartomancy-board > .cartomancy-list > h2 {
+  font-size: 1em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.cartomancy-board > .cartomancy-list > .cartomancy-cards {
+  height: calc(100% - 1em - 10px); /* 100% - font-size of h2 - margin-bottom of h2 */
+  overflow-y: auto;
+}

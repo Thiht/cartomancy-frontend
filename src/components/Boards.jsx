@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { Container, Segment } from 'semantic-ui-react'
+import { fetchBoardsIfNeeded } from '../actions/boards'
 
-import { fetchBoardsIfNeeded } from '../actions'
+import { Container, Segment } from 'semantic-ui-react'
 
 class BoardsComponent extends Component {
   static propTypes = {
-    boards: PropTypes.array,
+    boards: PropTypes.array.isRequired,
     fetchBoards: PropTypes.func.isRequired
   }
 
@@ -32,7 +32,7 @@ class BoardsComponent extends Component {
 }
 
 const mapStateToProps = ({ boards }) => ({
-  boards: boards.data
+  boards: boards.data || []
 })
 
 const mapDispatchToProps = dispatch => ({

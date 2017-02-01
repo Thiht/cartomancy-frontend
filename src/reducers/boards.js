@@ -1,4 +1,4 @@
-import { INVALIDATE_BOARDS, REQUEST_BOARDS, RECEIVE_BOARDS_SUCCESS, RECEIVE_BOARDS_FAIL } from '../actions'
+import { INVALIDATE_BOARDS, REQUEST_BOARDS, RECEIVE_BOARDS_SUCCESS, RECEIVE_BOARDS_FAIL } from '../actions/boards'
 
 const boards = (state = {
   isFetching: false,

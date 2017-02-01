@@ -12,7 +12,8 @@ export default {
   devtool: 'source-map',
   devServer: {
     open: true,
-    contentBase: path.join(projectRoot, 'dist')
+    contentBase: path.join(projectRoot, 'dist'),
+    historyApiFallback: true
   },
   context: projectRoot,
   entry: path.join(projectRoot, 'src/index.jsx'),

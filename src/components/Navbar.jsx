@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { IndexLink } from 'react-router'
+import { IndexLink, Link } from 'react-router'
+
+import { fetchBoardsIfNeeded } from '../actions/boards'
 
 import { Menu } from 'semantic-ui-react'
-
-import { fetchBoardsIfNeeded } from '../actions'
-
 import './Navbar.css'
 
 class NavbarComponent extends Component {
@@ -26,7 +25,7 @@ class NavbarComponent extends Component {
           Cartomancy
         </Menu.Item>
         {boards.map(board =>
-          <Menu.Item key={board._id}>{board.title}</Menu.Item>
+          <Menu.Item key={board._id} as={Link} to={`/boards/${board._id}`} activeClassName='active'>{board.title}</Menu.Item>
         )}
       </Menu>
     )

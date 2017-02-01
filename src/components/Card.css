@@ -1,0 +1,13 @@
+.cartomancy-board > .cartomancy-list > .cartomancy-cards > .cartomancy-card {
+  background: #fff;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  padding: 10px;
+  width: 100%;
+}
+.cartomancy-board > .cartomancy-list > .cartomancy-cards > .cartomancy-card > h3 {
+  font-size: 1em;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
