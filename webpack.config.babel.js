@@ -19,7 +19,7 @@ export default {
   entry: path.join(projectRoot, 'src/index.jsx'),
   output: {
     path: path.join(projectRoot, 'dist'),
-    filename: 'bundle.js'
+    filename: '/bundle.js'
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -53,14 +53,14 @@ export default {
         test: /.ttf$|.eot$|.woff2?$|\.svg$/,
         loader: 'file',
         query: {
-          name: 'font/[name].[ext]'
+          name: '/font/[name].[ext]'
         }
       },
       {
         test: /.png$|.jpe?g$|.ico?$/,
         loader: 'file',
         query: {
-          name: 'images/[name].[ext]'
+          name: '/images/[name].[ext]'
         }
       }
     ]
