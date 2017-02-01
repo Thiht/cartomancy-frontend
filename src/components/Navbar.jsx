@@ -4,7 +4,7 @@ import { IndexLink } from 'react-router'
 
 import { Menu } from 'semantic-ui-react'
 
-import { fetchBoardsThunk } from '../actions'
+import { fetchBoardsIfNeeded } from '../actions'
 
 class NavbarComponent extends Component {
   static propTypes = {
@@ -37,7 +37,7 @@ const mapStateToProps = ({ boards }) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchBoards () {
-    dispatch(fetchBoardsThunk())
+    dispatch(fetchBoardsIfNeeded())
   }
 })
 

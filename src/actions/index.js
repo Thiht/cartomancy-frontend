@@ -1,5 +1,10 @@
 import fetch from 'isomorphic-fetch'
 
+export const INVALIDATE_BOARDS = 'INVALIDATE_BOARDS'
+export const invalidateBoards = () => ({
+  type: INVALIDATE_BOARDS
+})
+
 export const REQUEST_BOARDS = 'REQUEST_BOARDS'
 const requestBoards = () => ({
   type: REQUEST_BOARDS
@@ -17,11 +22,10 @@ const receiveBoardsFail = error => ({
   error
 })
 
-// TODO: fetchBoardsIfNeeded
-export const fetchBoardsThunk = () => dispatch => {
+const fetchBoards = () => dispatch => {
   dispatch(requestBoards())
   return new Promise((resolve, reject) =>
-    fetch('http://localhost:8090/api/boards')
+    fetch('http://localhost:8090/api/boards') // TODO: make the URL configurable
       .then(response => {
         if (!response.ok) {
           throw Error(response.message)
@@ -32,4 +36,21 @@ export const fetchBoardsThunk = () => dispatch => {
       .then(boards => dispatch(receiveBoardsSuccess(boards)))
       .catch(error => dispatch(receiveBoardsFail(error)))
   )
+}
+
+const shouldFetchBoards = state => {
+  const { boards } = state
+  if (boards.isFetching) {
+    return false
+  } else {
+    return boards.didInvalidate
+  }
+}
+
+export const fetchBoardsIfNeeded = () => (dispatch, getState) => {
+  if (shouldFetchBoards(getState())) {
+    dispatch(fetchBoards())
+  } else {
+    return Promise.resolve()
+  }
 }
