@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { IndexLink } from 'react-router'
 
-import { Menu } from 'semantic-ui-react'
+import { Container, Segment } from 'semantic-ui-react'
 
 import { fetchBoardsIfNeeded } from '../actions'
 
-import './Navbar.css'
-
-class NavbarComponent extends Component {
+class BoardsComponent extends Component {
   static propTypes = {
     boards: PropTypes.array,
     fetchBoards: PropTypes.func.isRequired
@@ -21,14 +18,15 @@ class NavbarComponent extends Component {
   render () {
     const { boards } = this.props
     return (
-      <Menu inverted color='blue' size='mini'>
-        <Menu.Item as={IndexLink} to='/'>
-          Cartomancy
-        </Menu.Item>
-        {boards.map(board =>
-          <Menu.Item key={board._id}>{board.title}</Menu.Item>
-        )}
-      </Menu>
+      <Container text>
+        <Segment.Group>
+          {boards.map(board =>
+            <Segment key={board._id}>
+              {board.title}
+            </Segment>
+          )}
+        </Segment.Group>
+      </Container>
     )
   }
 }
@@ -43,9 +41,9 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const Navbar = connect(
+const Boards = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NavbarComponent)
+)(BoardsComponent)
 
-export default Navbar
+export default Boards

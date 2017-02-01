@@ -1,0 +1,15 @@
+html, body {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+body {
+  background: #34495e;
+  overflow-x: auto;
+
+  /* FIXME: use autoprefixer or equivalent */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

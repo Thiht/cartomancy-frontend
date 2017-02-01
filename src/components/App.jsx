@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import Navbar from './Navbar'
 
-const App = () => (
+const App = ({
+  children
+}) => (
   <div>
     <Navbar />
-    {this.props.children}
+    {children}
   </div>
 )
+
+App.propTypes = {
+  children: PropTypes.node
+}
 
 export default App
