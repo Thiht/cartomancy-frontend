@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 import { fetchBoardsIfNeeded } from '../actions/boards'
 
-import { Container, Segment } from 'semantic-ui-react'
+import { Container, Icon, Item } from 'semantic-ui-react'
+import './Boards.css'
 
 class BoardsComponent extends Component {
   static propTypes = {
@@ -19,13 +21,15 @@ class BoardsComponent extends Component {
     const { boards } = this.props
     return (
       <Container text>
-        <Segment.Group>
+        <Item.Group>
           {boards.map(board =>
-            <Segment key={board._id}>
-              {board.title}
-            </Segment>
+            <Item key={board._id} as={Link} to={`/boards/${board._id}`}>
+              <Item.Content>
+                <Icon name='columns' /> {board.title}
+              </Item.Content>
+            </Item>
           )}
-        </Segment.Group>
+        </Item.Group>
       </Container>
     )
   }

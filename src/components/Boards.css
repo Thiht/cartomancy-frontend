@@ -1,0 +1,21 @@
+.ui.items > .item:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+.ui.items > .item:last-child {
+  border-radius: 0 0 5px 5px;
+}
+
+.ui.items > .item:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ui.items > .item {
+  background: #fff !important;
+  margin: 0 !important;
+  padding: 1em !important;
+}
+
+.ui.items > .item:hover {
+  background: #fafafa !important;
+}
