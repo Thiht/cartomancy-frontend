@@ -3,8 +3,7 @@ import { INVALIDATE_BOARDS, REQUEST_BOARDS, RECEIVE_BOARDS_SUCCESS, RECEIVE_BOAR
 const boards = (state = {
   isFetching: false,
   didInvalidate: true,
-  data: [],
-  error: null
+  data: []
 }, action) => {
   switch (action.type) {
     case INVALIDATE_BOARDS:
@@ -22,14 +21,12 @@ const boards = (state = {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        data: action.boards,
-        error: null
+        data: action.boards
       }
     case RECEIVE_BOARDS_FAIL:
       return {
         ...state,
-        isFetching: false,
-        error: action.error
+        isFetching: false
       }
     default:
       return state

@@ -8,6 +8,7 @@ import List from './List'
 import NewList from './NewList'
 import './Board.css'
 
+import { DragDropContext } from 'react-dnd'
 class BoardComponent extends Component {
   static propTypes = {
     board: PropTypes.object.isRequired,
@@ -29,7 +30,6 @@ class BoardComponent extends Component {
     if (!board || (Object.keys(board).length === 0 && board.constructor === Object)) {
       return <div />
     }
-    console.log(board)
     return (
       <DocumentTitle title={board.title}>
         <div className='cartomancy-board'>

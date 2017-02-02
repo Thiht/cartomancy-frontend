@@ -29,12 +29,12 @@ export const createList = (boardID, title) => dispatch => {
     }) // TODO: make the URL configurable
       .then(response => {
         if (!response.ok) {
-          throw Error(response.message)
+          throw Error(response.statusText)
         }
         return response
       })
       .then(response => response.json())
       .then(board => dispatch(receiveCreateListSuccess(board)))
-      .catch(error => dispatch(receiveCreateListFail(error)))
+      .catch(error => dispatch(receiveCreateListFail(error.message)))
   )
 }

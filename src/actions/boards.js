@@ -25,13 +25,13 @@ const fetchBoards = () => dispatch => {
     fetch('http://localhost:8090/api/boards') // TODO: make the URL configurable
       .then(response => {
         if (!response.ok) {
-          throw Error(response.message)
+          throw Error(response.statusText)
         }
         return response
       })
       .then(response => response.json())
       .then(boards => dispatch(receiveBoardsSuccess(boards)))
-      .catch(error => dispatch(receiveBoardsFail(error)))
+      .catch(error => dispatch(receiveBoardsFail(error.message)))
   )
 }
 
