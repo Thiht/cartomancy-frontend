@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 
 import Card from './Card'
 import NewCard from './NewCard'
+import { Scrollbars } from 'react-custom-scrollbars'
 import './List.css'
 
 const List = ({
@@ -12,12 +13,14 @@ const List = ({
 }) => (
   <div className='cartomancy-list'>
     <h2>{title}</h2>
-    <div className='cartomancy-cards'>
-      {cards.map(card => (
-        <Card key={card._id} title={card.title} id={card._id} listID={id} boardID={boardID} />
-      ))}
-      <NewCard listID={id} boardID={boardID} />
-    </div>
+      <div className='cartomancy-cards'>
+        <Scrollbars>
+          {cards.map(card => (
+            <Card key={card._id} title={card.title} id={card._id} listID={id} boardID={boardID} />
+          ))}
+          <NewCard listID={id} boardID={boardID} />
+        </Scrollbars>
+      </div>
   </div>
 )
 

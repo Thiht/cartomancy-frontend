@@ -1,4 +1,4 @@
-.cartomancy-board > .cartomancy-list > .cartomancy-cards > .cartomancy-card {
+.cartomancy-card {
   background: #fff;
   border-radius: 3px;
   margin-bottom: 5px;
@@ -6,6 +6,6 @@
   width: 100%;
 }
 
-.cartomancy-board > .cartomancy-list > .cartomancy-cards > .cartomancy-card input {
+.cartomancy-card input {
   text-overflow: ellipsis;
 }

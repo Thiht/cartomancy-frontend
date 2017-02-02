@@ -67,7 +67,7 @@ class NewCardComponent extends Component {
       )
     } else {
       return (
-        <Button fluid onClick={this.onClick.bind(this)}>
+        <Button color='blue' fluid onClick={this.onClick.bind(this)}>
           <Icon name='plus' />
         </Button>
       )
