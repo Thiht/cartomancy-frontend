@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import Card from './Card'
+import NewCard from './NewCard'
 import './List.css'
 
 const List = ({
@@ -15,6 +16,7 @@ const List = ({
       {cards.map(card => (
         <Card key={card._id} title={card.title} id={card._id} listID={id} boardID={boardID} />
       ))}
+      <NewCard listID={id} boardID={boardID} />
     </div>
   </div>
 )
