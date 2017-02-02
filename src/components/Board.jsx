@@ -5,6 +5,7 @@ import { fetchBoardIfNeeded } from '../actions/board'
 
 import DocumentTitle from 'react-document-title'
 import List from './List'
+import NewList from './NewList'
 import './Board.css'
 
 class BoardComponent extends Component {
@@ -35,6 +36,7 @@ class BoardComponent extends Component {
           {board.lists.map(list => (
             <List key={list._id} title={list.title} cards={list.cards} id={list._id} boardID={board._id} />
           ))}
+          <NewList boardID={board._id} />
         </div>
       </DocumentTitle>
     )

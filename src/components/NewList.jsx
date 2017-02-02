@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { createCard } from '../actions/card'
+import { createList } from '../actions/list'
 
 import { Button, Icon, Input } from 'semantic-ui-react'
-import './Card'
+import './List'
 
-class NewCardComponent extends Component {
+class NewListComponent extends Component {
   static propTypes = {
-    listID: PropTypes.string.isRequired,
     boardID: PropTypes.string.isRequired,
-    createCard: PropTypes.func.isRequired
+    createList: PropTypes.func.isRequired
   }
 
   constructor (props) {
@@ -26,7 +25,7 @@ class NewCardComponent extends Component {
     })
   }
 
-  handleCreateCard (title) {
+  handleCreateList (title) {
     this.setState({
       active: false
     })
@@ -34,22 +33,22 @@ class NewCardComponent extends Component {
     if (title === '') {
       return
     }
-    const { boardID, listID } = this.props
-    this.props.createCard(boardID, listID, title)
+    const { boardID } = this.props
+    this.props.createList(boardID, title)
   }
 
   onBlur (e) {
-    this.handleCreateCard(e.target.value)
+    this.handleCreateList(e.target.value)
   }
 
   onKeyDown (e) {
     switch (e.key) {
       case 'Enter':
-        this.handleCreateCard(e.target.value)
+        this.handleCreateList(e.target.value)
         return
       case 'Esc':
       case 'Escape':
-        this.handleCreateCard('')
+        this.handleCreateList('')
         break
       default:
         break
@@ -59,16 +58,18 @@ class NewCardComponent extends Component {
   render () {
     if (this.state.active) {
       return (
-        <div className='cartomancy-card'>
-          <Input
-            fluid transparent autoFocus placeholder='New Card'
-            onBlur={this.onBlur.bind(this)} onKeyDown={this.onKeyDown.bind(this)}
-          />
+        <div className='cartomancy-list'>
+          <h2>
+            <Input
+              fluid transparent autoFocus placeholder='New List'
+              onBlur={this.onBlur.bind(this)} onKeyDown={this.onKeyDown.bind(this)}
+            />
+          </h2>
         </div>
       )
     } else {
       return (
-        <Button color='blue' fluid onClick={this.onClick.bind(this)}>
+        <Button onClick={this.onClick.bind(this)}>
           <Icon name='plus' />
         </Button>
       )
@@ -77,14 +78,14 @@ class NewCardComponent extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  createCard (boardID, listID, title) {
-    dispatch(createCard(boardID, listID, title))
+  createList (boardID, title) {
+    dispatch(createList(boardID, title))
   }
 })
 
-const NewCard = connect(
+const NewList = connect(
   undefined,
   mapDispatchToProps
-)(NewCardComponent)
+)(NewListComponent)
 
-export default NewCard
+export default NewList

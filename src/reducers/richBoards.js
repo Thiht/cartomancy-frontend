@@ -1,4 +1,5 @@
 import { REQUEST_BOARD, RECEIVE_BOARD_SUCCESS, RECEIVE_BOARD_FAIL } from '../actions/board'
+import { RECEIVE_CREATE_LIST_SUCCESS } from '../actions/list'
 import { RECEIVE_CREATE_CARD_SUCCESS } from '../actions/card'
 
 const board = (state = {
@@ -41,6 +42,7 @@ const richBoards = (state = {}, action) => {
         ...state,
         [action.boardID]: board(state[action.boardID], action)
       }
+    case RECEIVE_CREATE_LIST_SUCCESS:
     case RECEIVE_CREATE_CARD_SUCCESS:
       return {
         ...state,

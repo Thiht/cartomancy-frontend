@@ -45,7 +45,7 @@ const requestCreateCard = () => ({
 })
 
 export const RECEIVE_CREATE_CARD_SUCCESS = 'RECEIVE_CREATE_CARD_SUCCESS'
-const receiveCreateCardSuccess = (board) => ({
+const receiveCreateCardSuccess = board => ({
   type: RECEIVE_CREATE_CARD_SUCCESS,
   board
 })
