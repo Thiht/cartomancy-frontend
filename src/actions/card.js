@@ -29,13 +29,13 @@ export const updateCard = (boardID, listID, cardID, newTitle) => dispatch => {
     }) // TODO: make the URL configurable
       .then(response => {
         if (!response.ok) {
-          throw Error(response.message)
+          throw Error(response.statusText)
         }
         return response
       })
       .then(response => response.json())
       .then(card => dispatch(receiveUpdateCardSuccess(card)))
-      .catch(error => dispatch(receiveUpdateCardFail(error)))
+      .catch(error => dispatch(receiveUpdateCardFail(error.message)))
   )
 }
 
@@ -68,12 +68,12 @@ export const createCard = (boardID, listID, title) => dispatch => {
     }) // TODO: make the URL configurable
       .then(response => {
         if (!response.ok) {
-          throw Error(response.message)
+          throw Error(response.statusText)
         }
         return response
       })
       .then(response => response.json())
       .then(board => dispatch(receiveCreateCardSuccess(board)))
-      .catch(error => dispatch(receiveCreateCardFail(error)))
+      .catch(error => dispatch(receiveCreateCardFail(error.message)))
   )
 }

@@ -5,8 +5,7 @@ import { RECEIVE_CREATE_CARD_SUCCESS } from '../actions/card'
 const board = (state = {
   isFetching: false,
   didInvalidate: true,
-  data: {},
-  error: null
+  data: {}
 }, action) => {
   switch (action.type) {
     case REQUEST_BOARD:
@@ -19,14 +18,12 @@ const board = (state = {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        data: action.board,
-        error: null
+        data: action.board
       }
     case RECEIVE_BOARD_FAIL:
       return {
         ...state,
-        isFetching: false,
-        error: action.error
+        isFetching: false
       }
     default:
       return state
