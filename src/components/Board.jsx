@@ -33,7 +33,7 @@ class BoardComponent extends Component {
       <DocumentTitle title={board.title}>
         <div className='cartomancy-board'>
           {board.lists.map(list => (
-            <List key={list._id} title={list.title} cards={list.cards} />
+            <List key={list._id} title={list.title} cards={list.cards} id={list._id} boardID={board._id} />
           ))}
         </div>
       </DocumentTitle>

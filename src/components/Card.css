@@ -5,9 +5,7 @@
   padding: 10px;
   width: 100%;
 }
-.cartomancy-board > .cartomancy-list > .cartomancy-cards > .cartomancy-card > h3 {
-  font-size: 1em;
-  font-weight: normal;
-  overflow: hidden;
+
+.cartomancy-board > .cartomancy-list > .cartomancy-cards > .cartomancy-card input {
   text-overflow: ellipsis;
 }
