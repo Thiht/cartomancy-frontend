@@ -9,6 +9,8 @@ import NewList from './NewList'
 import './Board.css'
 
 import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
+
 class BoardComponent extends Component {
   static propTypes = {
     board: PropTypes.object.isRequired,
@@ -60,4 +62,4 @@ const Board = connect(
   mapDispatchToProps
 )(BoardComponent)
 
-export default Board
+export default DragDropContext(HTML5Backend)(Board)

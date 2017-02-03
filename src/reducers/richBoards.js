@@ -1,6 +1,6 @@
 import { REQUEST_BOARD, RECEIVE_BOARD_SUCCESS, RECEIVE_BOARD_FAIL } from '../actions/board'
 import { RECEIVE_CREATE_LIST_SUCCESS } from '../actions/list'
-import { RECEIVE_CREATE_CARD_SUCCESS } from '../actions/card'
+import { RECEIVE_CREATE_CARD_SUCCESS, RECEIVE_MOVE_CARD_SUCCESS } from '../actions/card'
 
 const board = (state = {
   isFetching: false,
@@ -41,6 +41,7 @@ const richBoards = (state = {}, action) => {
       }
     case RECEIVE_CREATE_LIST_SUCCESS:
     case RECEIVE_CREATE_CARD_SUCCESS:
+    case RECEIVE_MOVE_CARD_SUCCESS:
       return {
         ...state,
         [action.board._id]: {

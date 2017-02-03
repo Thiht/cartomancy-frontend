@@ -6,9 +6,9 @@ const requestUpdateCard = () => ({
 })
 
 export const RECEIVE_UPDATE_CARD_SUCCESS = 'RECEIVE_UPDATE_CARD_SUCCESS'
-const receiveUpdateCardSuccess = card => ({
+const receiveUpdateCardSuccess = board => ({
   type: RECEIVE_UPDATE_CARD_SUCCESS,
-  card
+  board
 })
 
 export const RECEIVE_UPDATE_CARD_FAIL = 'RECEIVE_UPDATE_CARD_FAIL'
@@ -34,8 +34,47 @@ export const updateCard = (boardID, listID, cardID, newTitle) => dispatch => {
         return response
       })
       .then(response => response.json())
-      .then(card => dispatch(receiveUpdateCardSuccess(card)))
+      .then(board => dispatch(receiveUpdateCardSuccess(board)))
       .catch(error => dispatch(receiveUpdateCardFail(error.message)))
+  )
+}
+
+export const REQUEST_MOVE_CARD = 'REQUEST_MOVE_CARD'
+const requestMoveCard = () => ({
+  type: REQUEST_MOVE_CARD
+})
+
+export const RECEIVE_MOVE_CARD_SUCCESS = 'RECEIVE_MOVE_CARD_SUCCESS'
+const receiveMoveCardSuccess = board => ({
+  type: RECEIVE_MOVE_CARD_SUCCESS,
+  board
+})
+
+export const RECEIVE_MOVE_CARD_FAIL = 'RECEIVE_MOVE_CARD_FAIL'
+const receiveMoveCardFail = error => ({
+  type: RECEIVE_MOVE_CARD_FAIL,
+  error
+})
+
+export const moveCard = (boardID, listID, cardID, newListID) => dispatch => {
+  dispatch(requestMoveCard())
+  return new Promise((resolve, reject) =>
+    fetch(`http://localhost:8090/api/boards/${boardID}/lists/${listID}/cards/${cardID}`, {
+      method: 'PUT',
+      body: `newListID=${encodeURI(newListID)}`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      }
+    }) // TODO: make the URL configurable
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        return response
+      })
+      .then(response => response.json())
+      .then(board => dispatch(receiveMoveCardSuccess(board)))
+      .catch(error => dispatch(receiveMoveCardFail(error.message)))
   )
 }
 

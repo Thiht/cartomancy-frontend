@@ -6,13 +6,17 @@ import { updateCard } from '../actions/card'
 import { Input } from 'semantic-ui-react'
 import './Card.css'
 
+import { DragSource } from 'react-dnd'
+
 class CardComponent extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     listID: PropTypes.string.isRequired,
     boardID: PropTypes.string.isRequired,
-    updateCard: PropTypes.func.isRequired
+    updateCard: PropTypes.func.isRequired,
+    connectDragSource: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired
   }
 
   onBlur (e) {
@@ -31,14 +35,32 @@ class CardComponent extends Component {
   }
 
   render () {
+    const { connectDragSource, isDragging } = this.props
     const title = this.props.title.trim()
-    return (
-      <div className='cartomancy-card'>
+    return connectDragSource(
+      <div className='cartomancy-card' style={{
+        opacity: isDragging ? 0 : 1
+      }}>
         <Input fluid transparent defaultValue={title} onBlur={this.onBlur.bind(this)} />
       </div>
     )
   }
 }
+
+const cardSource = {
+  beginDrag (props) {
+    return {
+      id: props.id,
+      listID: props.listID,
+      boardID: props.boardID
+    }
+  }
+}
+
+const collect = (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+})
 
 const mapDispatchToProps = dispatch => ({
   updateCard (boardID, listID, cardID, newTitle) {
@@ -51,4 +73,4 @@ const Card = connect(
   mapDispatchToProps
 )(CardComponent)
 
-export default Card
+export default DragSource('card', cardSource, collect)(Card)
