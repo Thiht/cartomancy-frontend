@@ -20,7 +20,6 @@ class CardComponent extends Component {
 
     // Move the cursor to the beginning of the field
     field.setSelectionRange(0, 0)
-    field.focus()
 
     const defaultTitle = field.defaultValue.trim()
     const newTitle = field.value.trim()
