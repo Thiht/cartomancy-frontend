@@ -1,5 +1,13 @@
 import fetch from 'isomorphic-fetch'
 
+// This action is used with the websocket since every update (cards, lists)
+// triggers the writing of the updated board on the websocket
+export const RECEIVE_UPDATE_BOARD_SUCCESS = 'RECEIVE_UPDATE_BOARD_SUCCESS'
+export const receiveUpdateBoardSuccess = board => ({
+  type: RECEIVE_UPDATE_BOARD_SUCCESS,
+  board
+})
+
 export const REQUEST_BOARD = 'REQUEST_BOARD'
 const requestBoard = boardID => ({
   type: REQUEST_BOARD,

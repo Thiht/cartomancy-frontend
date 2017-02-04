@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
-    "dist": "cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production webpack",
     "lint": "eslint --ext .js,.jsx src",
     "start": "webpack-dev-server --hot --inline",
     "test": "jest --verbose",

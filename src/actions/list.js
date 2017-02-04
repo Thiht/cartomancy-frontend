@@ -5,12 +5,6 @@ const requestCreateList = () => ({
   type: REQUEST_CREATE_LIST
 })
 
-export const RECEIVE_CREATE_LIST_SUCCESS = 'RECEIVE_CREATE_LIST_SUCCESS'
-const receiveCreateListSuccess = board => ({
-  type: RECEIVE_CREATE_LIST_SUCCESS,
-  board
-})
-
 export const RECEIVE_CREATE_LIST_FAIL = 'RECEIVE_CREATE_LIST_FAIL'
 const receiveCreateListFail = error => ({
   type: RECEIVE_CREATE_LIST_FAIL,
@@ -33,8 +27,6 @@ export const createList = (boardID, title) => dispatch => {
         }
         return response
       })
-      .then(response => response.json())
-      .then(board => dispatch(receiveCreateListSuccess(board)))
       .catch(error => dispatch(receiveCreateListFail(error.message)))
   )
 }

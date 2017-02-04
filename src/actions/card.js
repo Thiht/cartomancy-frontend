@@ -5,12 +5,6 @@ const requestUpdateCard = () => ({
   type: REQUEST_UPDATE_CARD
 })
 
-export const RECEIVE_UPDATE_CARD_SUCCESS = 'RECEIVE_UPDATE_CARD_SUCCESS'
-const receiveUpdateCardSuccess = board => ({
-  type: RECEIVE_UPDATE_CARD_SUCCESS,
-  board
-})
-
 export const RECEIVE_UPDATE_CARD_FAIL = 'RECEIVE_UPDATE_CARD_FAIL'
 const receiveUpdateCardFail = error => ({
   type: RECEIVE_UPDATE_CARD_FAIL,
@@ -22,7 +16,7 @@ export const updateCard = (boardID, listID, cardID, newTitle) => dispatch => {
   return new Promise((resolve, reject) =>
     fetch(`http://localhost:8090/api/boards/${boardID}/lists/${listID}/cards/${cardID}`, {
       method: 'PUT',
-      body: `title=${encodeURI(newTitle)}`,
+      body: `title=${encodeURIComponent(newTitle)}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
       }
@@ -33,8 +27,6 @@ export const updateCard = (boardID, listID, cardID, newTitle) => dispatch => {
         }
         return response
       })
-      .then(response => response.json())
-      .then(board => dispatch(receiveUpdateCardSuccess(board)))
       .catch(error => dispatch(receiveUpdateCardFail(error.message)))
   )
 }
@@ -42,12 +34,6 @@ export const updateCard = (boardID, listID, cardID, newTitle) => dispatch => {
 export const REQUEST_MOVE_CARD = 'REQUEST_MOVE_CARD'
 const requestMoveCard = () => ({
   type: REQUEST_MOVE_CARD
-})
-
-export const RECEIVE_MOVE_CARD_SUCCESS = 'RECEIVE_MOVE_CARD_SUCCESS'
-const receiveMoveCardSuccess = board => ({
-  type: RECEIVE_MOVE_CARD_SUCCESS,
-  board
 })
 
 export const RECEIVE_MOVE_CARD_FAIL = 'RECEIVE_MOVE_CARD_FAIL'
@@ -72,8 +58,6 @@ export const moveCard = (boardID, listID, cardID, newListID) => dispatch => {
         }
         return response
       })
-      .then(response => response.json())
-      .then(board => dispatch(receiveMoveCardSuccess(board)))
       .catch(error => dispatch(receiveMoveCardFail(error.message)))
   )
 }
@@ -81,12 +65,6 @@ export const moveCard = (boardID, listID, cardID, newListID) => dispatch => {
 export const REQUEST_CREATE_CARD = 'REQUEST_CREATE_CARD'
 const requestCreateCard = () => ({
   type: REQUEST_CREATE_CARD
-})
-
-export const RECEIVE_CREATE_CARD_SUCCESS = 'RECEIVE_CREATE_CARD_SUCCESS'
-const receiveCreateCardSuccess = board => ({
-  type: RECEIVE_CREATE_CARD_SUCCESS,
-  board
 })
 
 export const RECEIVE_CREATE_CARD_FAIL = 'RECEIVE_CREATE_CARD_FAIL'
@@ -111,8 +89,6 @@ export const createCard = (boardID, listID, title) => dispatch => {
         }
         return response
       })
-      .then(response => response.json())
-      .then(board => dispatch(receiveCreateCardSuccess(board)))
       .catch(error => dispatch(receiveCreateCardFail(error.message)))
   )
 }

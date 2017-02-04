@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchBoardIfNeeded } from '../actions/board'
+import { fetchBoardIfNeeded, receiveUpdateBoardSuccess } from '../actions/board'
 
 import DocumentTitle from 'react-document-title'
 import List from './List'
@@ -14,7 +14,22 @@ import HTML5Backend from 'react-dnd-html5-backend'
 class BoardComponent extends Component {
   static propTypes = {
     board: PropTypes.object.isRequired,
-    fetchBoard: PropTypes.func.isRequired
+    params: PropTypes.object,
+    fetchBoard: PropTypes.func.isRequired,
+    receiveUpdateBoardSuccess: PropTypes.func.isRequired
+  }
+
+  constructor (props) {
+    super(props)
+    const { boardID } = props.params
+    const ws = new WebSocket(`ws://localhost:8090/ws?topic=${boardID}`) // TODO: make the URL configurable
+    ws.onmessage = ({ data }) => {
+      const board = JSON.parse(data)
+      props.receiveUpdateBoardSuccess(board)
+    }
+    this.state = {
+      ws
+    }
   }
 
   componentWillMount () {
@@ -23,6 +38,10 @@ class BoardComponent extends Component {
 
   componentWillUpdate (nextProps) {
     nextProps.fetchBoard()
+  }
+
+  componentWillUnmount () {
+    this.state.ws.close()
   }
 
   render () {
@@ -54,6 +73,9 @@ const mapStateToProps = ({ richBoards }, { params }) => {
 const mapDispatchToProps = (dispatch, { params }) => ({
   fetchBoard () {
     dispatch(fetchBoardIfNeeded(params.boardID))
+  },
+  receiveUpdateBoardSuccess (board) {
+    dispatch(receiveUpdateBoardSuccess(board))
   }
 })
 
