@@ -42,7 +42,7 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.4",
-    "semantic-ui-react": "^0.64.5"
+    "semantic-ui-react": "^0.64.7"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -58,7 +58,7 @@
     "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
     "deep-freeze": "^0.0.1",
-    "eslint": "^3.14.1",
+    "eslint": "^3.15.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-promise": "^3.4.0",
@@ -70,7 +70,7 @@
     "jest": "^18.1.0",
     "json-loader": "^0.5.4",
     "nock": "^9.0.2",
-    "redux-logger": "^2.7.4",
+    "redux-logger": "^2.8.1",
     "redux-mock-store": "^1.2.2",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
