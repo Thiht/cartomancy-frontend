@@ -22,7 +22,7 @@ class BoardComponent extends Component {
   constructor (props) {
     super(props)
     const { boardID } = props.params
-    const ws = new WebSocket(`ws://localhost:8090/ws?topic=${boardID}`) // TODO: make the URL configurable
+    const ws = new WebSocket(`ws://${SERVER_URL}/ws?topic=${boardID}`)
     ws.onmessage = ({ data }) => {
       const board = JSON.parse(data)
       props.receiveUpdateBoardSuccess(board)

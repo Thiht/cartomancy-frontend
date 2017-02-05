@@ -7,15 +7,19 @@ import { routerMiddleware } from 'react-router-redux'
 
 import appReducer from '../reducers'
 
-const loggerMiddleware = createLogger()
-const routerMiddlewareWithHistory = routerMiddleware(browserHistory)
+const middlewares = [
+  thunkMiddleware,
+  routerMiddleware(browserHistory)
+]
+
+if (process.env.NODE_ENV !== 'production') {
+  middlewares.push(createLogger())
+}
 
 const store = createStore(
   appReducer,
   applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware,
-    routerMiddlewareWithHistory
+    ...middlewares
   )
 )
 

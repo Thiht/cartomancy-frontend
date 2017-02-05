@@ -1,4 +1,6 @@
 parser: babel-eslint
+globals:
+  SERVER_URL: false
 plugins:
 - react
 env:

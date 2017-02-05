@@ -31,7 +31,7 @@ const receiveBoardFail = (boardID, error) => ({
 const fetchBoard = boardID => dispatch => {
   dispatch(requestBoard(boardID))
   return new Promise((resolve, reject) =>
-    fetch(`http://localhost:8090/api/boards/${boardID}`) // TODO: make the URL configurable
+    fetch(`http://${SERVER_URL}/api/boards/${boardID}`)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)

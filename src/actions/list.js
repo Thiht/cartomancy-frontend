@@ -14,13 +14,13 @@ const receiveCreateListFail = error => ({
 export const createList = (boardID, title) => dispatch => {
   dispatch(requestCreateList())
   return new Promise((resolve, reject) =>
-    fetch(`http://localhost:8090/api/boards/${boardID}/lists/`, {
+    fetch(`http://${SERVER_URL}/api/boards/${boardID}/lists/`, {
       method: 'POST',
       body: `title=${encodeURI(title)}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
       }
-    }) // TODO: make the URL configurable
+    })
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)

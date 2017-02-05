@@ -3,8 +3,10 @@ import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import config from './config'
 
-const production = process.env.NODE_ENV === 'production'
+const env = process.env.NODE_ENV || 'development'
+const production = env === 'production'
 
 const projectRoot = __dirname
 
@@ -66,6 +68,12 @@ export default {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(env)
+      },
+      'SERVER_URL': JSON.stringify(`${config.serverHost}:${config.serverPort}`)
+    }),
     new ExtractTextPlugin('bundle.css', {
       disable: !production
     }),

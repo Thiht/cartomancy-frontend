@@ -14,13 +14,13 @@ const receiveUpdateCardFail = error => ({
 export const updateCard = (boardID, listID, cardID, newTitle) => dispatch => {
   dispatch(requestUpdateCard())
   return new Promise((resolve, reject) =>
-    fetch(`http://localhost:8090/api/boards/${boardID}/lists/${listID}/cards/${cardID}`, {
+    fetch(`http://${SERVER_URL}/api/boards/${boardID}/lists/${listID}/cards/${cardID}`, {
       method: 'PUT',
       body: `title=${encodeURIComponent(newTitle)}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
       }
-    }) // TODO: make the URL configurable
+    })
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)
@@ -45,13 +45,13 @@ const receiveMoveCardFail = error => ({
 export const moveCard = (boardID, listID, cardID, newListID) => dispatch => {
   dispatch(requestMoveCard())
   return new Promise((resolve, reject) =>
-    fetch(`http://localhost:8090/api/boards/${boardID}/lists/${listID}/cards/${cardID}`, {
+    fetch(`http://${SERVER_URL}/api/boards/${boardID}/lists/${listID}/cards/${cardID}`, {
       method: 'PUT',
       body: `newListID=${encodeURI(newListID)}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
       }
-    }) // TODO: make the URL configurable
+    })
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)
@@ -76,13 +76,13 @@ const receiveCreateCardFail = error => ({
 export const createCard = (boardID, listID, title) => dispatch => {
   dispatch(requestCreateCard())
   return new Promise((resolve, reject) =>
-    fetch(`http://localhost:8090/api/boards/${boardID}/lists/${listID}/cards`, {
+    fetch(`http://${SERVER_URL}/api/boards/${boardID}/lists/${listID}/cards`, {
       method: 'POST',
       body: `title=${encodeURI(title)}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
       }
-    }) // TODO: make the URL configurable
+    })
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)
