@@ -1,5 +1,7 @@
 .cartomancy-board {
-  height: 100%;
+  height: calc(100% - 45px); /* 100% - height of the navbar - padding */
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 10px;
   padding-top: 0;
   white-space: nowrap;
