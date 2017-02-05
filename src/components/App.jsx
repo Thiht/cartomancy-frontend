@@ -5,6 +5,29 @@ import DocumentTitle from 'react-document-title'
 import NotificationSystem from 'react-notification-system'
 import Navbar from './Navbar'
 
+const notificationStyle = {
+  NotificationItem: {
+    DefaultStyle: {
+      borderRadius: '5px',
+      borderTop: 'none'
+    },
+    error: {
+      background: '#e74c3c',
+      color: '#ecf0f1'
+    }
+  },
+  Title: {
+    DefaultStyle: {
+      marginBottom: '5px',
+      paddingBottom: '5px'
+    },
+    error: {
+      borderBottom: '1px solid #ecf0f1',
+      color: '#ecf0f1'
+    }
+  }
+}
+
 class AppComponent extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -14,9 +37,11 @@ class AppComponent extends Component {
   componentDidUpdate () {
     if (this.props.error) {
       this.refs.notificationSystem.addNotification({
+        title: 'Oops, something went wrong!',
         message: this.props.error,
         level: 'error',
-        position: 'br'
+        position: 'br',
+        dismissible: false
       })
     }
   }
@@ -27,7 +52,7 @@ class AppComponent extends Component {
         <div>
           <Navbar />
           {this.props.children}
-          <NotificationSystem ref='notificationSystem' />
+          <NotificationSystem style={notificationStyle} ref='notificationSystem' />
         </div>
       </DocumentTitle>
     )
