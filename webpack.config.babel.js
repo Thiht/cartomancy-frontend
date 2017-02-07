@@ -44,7 +44,7 @@ export default {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(
           'style',
-          'css'
+          ['css?importLoaders=1', 'postcss']
         )
       },
       {
@@ -75,6 +75,7 @@ export default {
       'SERVER_URL': JSON.stringify(`${config.serverHost}:${config.serverPort}`)
     }),
     new ExtractTextPlugin('bundle.css', {
+      allChunks: true,
       disable: !production
     }),
     new HtmlWebpackPlugin({
