@@ -1,6 +1,7 @@
 parser: babel-eslint
 globals:
   SERVER_URL: false
+  LOCAL_STORAGE_KEY: false
 plugins:
 - react
 env:

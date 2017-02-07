@@ -72,7 +72,8 @@ export default {
       'process.env': {
         'NODE_ENV': JSON.stringify(env)
       },
-      'SERVER_URL': JSON.stringify(`${config.serverHost}:${config.serverPort}`)
+      'SERVER_URL': JSON.stringify(`${config.serverHost}:${config.serverPort}`),
+      'LOCAL_STORAGE_KEY': JSON.stringify(config.localStorageKey)
     }),
     new ExtractTextPlugin('bundle.css', {
       allChunks: true,
