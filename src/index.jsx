@@ -10,11 +10,18 @@ import store from './store'
 import App from './components/App'
 import Boards from './components/Boards'
 import Board from './components/Board'
+import { fetchAuthUser } from './actions/auth'
 
 import 'semantic-ui-css/semantic.min.css'
 import './common.css'
 
 const history = syncHistoryWithStore(browserHistory, store)
+
+// Retrieve data for the connected user
+const jwtToken = localStorage.getItem(`${LOCAL_STORAGE_KEY}-jwt-token`)
+if (jwtToken) {
+  store.dispatch(fetchAuthUser(jwtToken))
+}
 
 render(
   <Provider store={store}>

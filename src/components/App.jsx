@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import DocumentTitle from 'react-document-title'
 import NotificationSystem from 'react-notification-system'
-import Navbar from './Navbar'
+import Navbar from './navbar/Navbar'
 
 const notificationStyle = {
   NotificationItem: {
