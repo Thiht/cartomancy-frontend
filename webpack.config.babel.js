@@ -11,58 +11,66 @@ const production = env === 'production'
 const projectRoot = __dirname
 
 export default {
-  devtool: 'source-map',
+  devtool: production ? 'source-map' : 'eval-source-map',
   devServer: {
     open: true,
     contentBase: path.join(projectRoot, 'dist'),
     historyApiFallback: true
   },
-  context: projectRoot,
   entry: path.join(projectRoot, 'src/index.jsx'),
   output: {
     path: path.join(projectRoot, 'dist'),
-    filename: '/bundle.js'
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   module: {
-    preLoaders: [
+    rules: [
+      {
+        test: /\.jsx?$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          configFile: path.join(projectRoot, '.eslintrc')
+        }
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'eslint'
-      }
-    ],
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel'
+        use: 'babel-loader'
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          ['css?importLoaders=1', 'postcss']
-        )
-      },
-      {
-        test: /\.json$/,
-        loader: 'json'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: true
+              }
+            },
+            {
+              loader: 'postcss-loader'
+            }
+          ]
+        })
       },
       {
         test: /.ttf$|.eot$|.woff2?$|\.svg$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
-          name: '/font/[name].[ext]'
+          name: 'font/[name].[ext]'
         }
       },
       {
         test: /.png$|.jpe?g$|.ico?$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
-          name: '/images/[name].[ext]'
+          name: 'images/[name].[ext]'
         }
       }
     ]
@@ -75,7 +83,8 @@ export default {
       'SERVER_URL': JSON.stringify(`${config.serverHost}:${config.serverPort}`),
       'LOCAL_STORAGE_KEY': JSON.stringify(config.localStorageKey)
     }),
-    new ExtractTextPlugin('bundle.css', {
+    new ExtractTextPlugin({
+      filename: 'bundle.css',
       allChunks: true,
       disable: !production
     }),
@@ -101,8 +110,5 @@ export default {
     ] : [
       // Development-only plugins
     ]
-  ),
-  eslint: {
-    configFile: path.join(projectRoot, '.eslintrc')
-  }
+  )
 }
