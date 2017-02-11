@@ -30,3 +30,7 @@ The recommended development environment is [Visual Studio Code](https://code.vis
 
 * [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+## License
+
+See the [LICENSE](./LICENSE.md) file.
