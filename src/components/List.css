@@ -1,5 +1,5 @@
 .cartomancy-board > .ui.button {
-  opacity: .5;
+  opacity: 0.5;
   width: 250px;
 }
 
@@ -15,8 +15,9 @@
   width: 250px;
 }
 
-.cartomancy-list > h2, .cartomancy-list > h2 input {
-  color: rgba(0, 0, 0, .90) !important;
+.cartomancy-list > h2,
+.cartomancy-list > h2 input {
+  color: rgba(0, 0, 0, 0.9) !important;
   font-size: 1em !important;
   font-weight: bold !important;
   margin-bottom: 10px;

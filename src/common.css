@@ -1,4 +1,7 @@
-html, body, #root, #root > [data-reactroot] {
+html,
+body,
+#root,
+#root > [data-reactroot] {
   height: 100%;
   overflow: hidden;
 }
