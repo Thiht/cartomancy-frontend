@@ -50,12 +50,10 @@ export default {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: true
+                importLoaders: 1
               }
             },
-            {
-              loader: 'postcss-loader'
-            }
+            'postcss-loader'
           ]
         })
       },
