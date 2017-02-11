@@ -9,10 +9,12 @@ This is the frontend of Cartomancy.
 
 ## Get started
 
-### Requirements:
+![Screenshot of a Cartomancy board](./docs/images/cartomancy-board.png)
+
+### Requirements
 
 * [NodeJS](https://nodejs.org/en/), at least the LTS version.
-* [Cartomancy Backend](https://github.com/Thiht/cartomancy-backend), running on [http://localhost:8090/](http://localhost:8090/) by default. This can be configured in the [config files](./config/)
+* [Cartomancy Backend](https://github.com/Thiht/cartomancy-backend), running on [http://localhost:8090/](http://localhost:8090/) by default. This can be configured in the [config files](./config/).
 
 Before anything, install the dependencies:
 
