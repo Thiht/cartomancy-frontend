@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { updateCard } from '../actions/card'
+import { updateCard, removeCard } from '../actions/card'
 
 import { Input } from 'semantic-ui-react'
 import './Card.css'
@@ -15,6 +15,7 @@ class CardComponent extends Component {
     listID: PropTypes.string.isRequired,
     boardID: PropTypes.string.isRequired,
     updateCard: PropTypes.func.isRequired,
+    removeCard: PropTypes.func.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired
   }
@@ -30,8 +31,12 @@ class CardComponent extends Component {
     if (newTitle === defaultTitle) {
       return
     }
-    const { id, listID, boardID, updateCard } = this.props
-    updateCard(boardID, listID, id, newTitle)
+    const { id, listID, boardID, updateCard, removeCard } = this.props
+    if (newTitle.trim() === '') {
+      removeCard(boardID, listID, id)
+    } else {
+      updateCard(boardID, listID, id, newTitle)
+    }
   }
 
   render () {
@@ -65,6 +70,10 @@ const collect = (connect, monitor) => ({
 const mapDispatchToProps = dispatch => ({
   updateCard (boardID, listID, cardID, newTitle) {
     dispatch(updateCard(boardID, listID, cardID, newTitle))
+  },
+
+  removeCard (boardID, listID, cardID) {
+    dispatch(removeCard(boardID, listID, cardID))
   }
 })
 

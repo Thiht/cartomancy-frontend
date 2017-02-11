@@ -92,3 +92,30 @@ export const createCard = (boardID, listID, title) => dispatch => {
       .catch(error => dispatch(receiveCreateCardFail(error.message)))
   )
 }
+
+export const REQUEST_REMOVE_CARD = 'REQUEST_REMOVE_CARD'
+const requestRemoveCard = () => ({
+  type: REQUEST_REMOVE_CARD
+})
+
+export const RECEIVE_REMOVE_CARD_FAIL = 'RECEIVE_REMOVE_CARD_FAIL'
+const receiveRemoveCardFail = error => ({
+  type: RECEIVE_REMOVE_CARD_FAIL,
+  error
+})
+
+export const removeCard = (boardID, listID, cardID) => dispatch => {
+  dispatch(requestRemoveCard())
+  return new Promise((resolve, reject) =>
+    fetch(`http://${SERVER_URL}/api/boards/${boardID}/lists/${listID}/cards/${cardID}`, {
+      method: 'DELETE'
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        return response
+      })
+      .catch(error => dispatch(receiveRemoveCardFail(error.message)))
+  )
+}
