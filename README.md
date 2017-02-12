@@ -14,11 +14,16 @@ This is the frontend of Cartomancy.
 ### Requirements
 
 * [NodeJS](https://nodejs.org/en/), at least the LTS version.
+* [Yarn](https://yarnpkg.com/fr/), recommended.
 * [Cartomancy Backend](https://github.com/Thiht/cartomancy-backend), running on [http://localhost:8090/](http://localhost:8090/) by default. This can be configured in the [config files](./config/).
 
 Before anything, install the dependencies:
 
-    npm install
+```bash
+yarn install
+# or
+npm install
+```
 
 ### Development
 
