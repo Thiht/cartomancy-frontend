@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./config')
@@ -75,9 +75,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(env)
-      },
+      'process.env.NODE_ENV': JSON.stringify(env),
       'SERVER_URL': JSON.stringify(`${config.serverHost}:${config.serverPort}`),
       'LOCAL_STORAGE_KEY': JSON.stringify(config.localStorageKey)
     }),
@@ -87,7 +85,7 @@ module.exports = {
       disable: !production
     }),
     new HtmlWebpackPlugin({
-      title: 'Cartomancy',
+      title: config.appName,
       template: path.join(projectRoot, 'src/index.ejs'),
       hash: true,
       minify: production && {
@@ -99,7 +97,7 @@ module.exports = {
   ].concat(
     production ? [
       // Production-only plugins
-      new CleanWebpackPlugin(['dist'], {
+      new CleanPlugin(['dist'], {
         verbose: true
       }),
       new webpack.optimize.UglifyJsPlugin({

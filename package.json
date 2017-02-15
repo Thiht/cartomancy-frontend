@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
-    "build": "webpack -p",
+    "build": "cross-env NODE_ENV=production webpack -p",
     "lint:js": "eslint --ext .js,.jsx src",
     "lint:css": "stylelint src/**/*.css",
     "start": "webpack-dev-server --hot --inline",
@@ -58,6 +58,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "clean-webpack-plugin": "^0.1.15",
+    "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
     "deep-freeze": "^0.0.1",
     "eslint": "^3.15.0",

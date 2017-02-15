@@ -1,4 +1,5 @@
 {
+  "appName": "Cartomancy",
   "serverHost": "localhost",
   "serverPort": 8090,
   "localStorageKey": "cartomancy"
