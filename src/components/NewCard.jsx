@@ -13,11 +13,8 @@ class NewCardComponent extends Component {
     createCard: PropTypes.func.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      active: false
-    }
+  state = {
+    active: false
   }
 
   onClick () {

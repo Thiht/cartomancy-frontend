@@ -22,7 +22,7 @@ class NavbarComponent extends Component {
     const { boards } = this.props
     return (
       <Menu inverted color='blue' size='mini'>
-        <Menu.Item as={IndexLink} to='/'>
+        <Menu.Item header as={IndexLink} to='/' activeClassName='active'>
           Cartomancy
         </Menu.Item>
         {boards.map(board =>
