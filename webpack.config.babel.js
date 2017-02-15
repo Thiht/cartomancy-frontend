@@ -1,16 +1,16 @@
-import path from 'path'
-import webpack from 'webpack'
-import CleanWebpackPlugin from 'clean-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import config from './config'
+const path = require('path')
+const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const config = require('./config')
 
 const env = process.env.NODE_ENV || 'development'
 const production = env === 'production'
 
 const projectRoot = __dirname
 
-export default {
+module.exports = {
   devtool: production ? 'source-map' : 'eval-source-map',
   devServer: {
     open: true,
